@@ -18,14 +18,22 @@ Built strictly with **Plain HTML5, CSS3, and Vanilla JavaScript (ES Modules)** �
    - **Staggered Intro Animation**: On initial page load, the three garments execute a staggered ~120ms turn sequence to visually introduce their interactive nature.
    - **Dynamic Projected Floor Shadows**: Each garment features soft radial floor shadows that dynamically scale their width in real time matching the garment's projected width at every angle (e.g. narrowing on side profiles, expanding on front/back views).
 
-2. **Signature Blurred Editorial Viewer (FLIP Modal)**:
-   - Clicking any hanging garment initiates a **FLIP spatial transition** (`cubic-bezier(0.22, 1, 0.36, 1)`, ~520ms) flying from its position on the rail to the center stage.
-   - Background blurs with a warm cream wash (`backdrop-filter: blur(28px) saturate(130%)`, `rgba(244, 238, 236, 0.90)`).
-   - **Interactive 360° Scrubbing**: Drag horizontally with touch or mouse to rotate the garment with natural pointer inertia and momentum damping (`velocity *= 0.92`).
-   - **Front / Back Segmented Tabs**: Clicking "Front" or "Back" calculates the shortest rotational angular path around the 150-frame circle and smoothly turns the garment to reveal front embroidery or back prints (e.g. "ALL WE NEED IS MONEY" cash roll).
-   - **Studio Flat Toggle**: Toggle between the 3D interactive turntable and high-resolution studio flat photography.
-   - **Complete Editorial Specs**: Fabric GSM, weave, distressing, size options (`S`, `M`, `L`, `XL`, `XXL`), and size recommendation notes.
-   - **Carousel Navigation**: Left/Right chevrons and keyboard arrow keys (`←`, `→`, `Esc`).
+2. **Signature Blurred Editorial Viewer (Single-Product Layer modeled on `web_demo_2.mp4`)**:
+   - Built directly into the page as an interactive layer (same URL, same canvas engine, same tokens).
+   - Driven by **ONE Master Progress Value $t \in [0, 1]$** (`OPEN_MS = 600`, `CLOSE_MS = 480`) with `cubic-bezier(0.22, 1, 0.36, 1)`.
+   - **Shared-Element FLIP Morph**: The garment canvas morphs seamlessly from its hanging position on the rail to large center stage with cross-dissolve between the rail front still and viewer frame 1.
+   - **Backdrop Blur & Wash**: Fixed `backdrop-filter: blur(24px) saturate(125%)` with warm cream wash `rgba(244, 238, 236, 0.85)` animating opacity only (zero blur-radius thrashing).
+   - **Hairline Wire**: A thin vertical wire extends from the viewport top edge directly down to the hanger hook apex.
+   - **90-Frame 180° Half-Turn Turntable**:
+     - Uses the dedicated high-resolution studio half-turn sequences (`0001.webp` ... `0090.webp` at 720×800).
+     - Front $\leftrightarrow$ Back tabs execute a buttery eased half-turn over `TURN_MS = 800` (`easeInOutCubic`).
+     - Back view of *All We Need Vintage Boxy Tee* displays the iconic "ALL WE NEED IS MONEY" print with wrapped cash roll artwork.
+     - Dual-frame sub-frame interpolation blends adjacent frames at 60fps for silky smooth motion.
+     - Dynamic soft floor shadow scales its width according to each frame's measured projected width.
+   - **Horizontal Drag Scrubbing**: Drag with touch or mouse to rotate with rubber-band resistance at boundaries and magnetic snapping to Front ($p=1$) or Back ($p=90$).
+   - **Product Navigation**: Switch garments via left/right arrows or keyboard keys (`←`, `→`, `Esc`).
+   - Deep-linking support via URL hash (`#arch-longsleeve`, `#all-we-need-tee`, `#money-rose-shirt`) and browser back/forward history.
+   - Fully responsive on desktop and mobile ($390\times 844$).
 
 3. **Persistent Bag & Fast Commerce Path**:
    - Slideover cart drawer persisted in `localStorage`.

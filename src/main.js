@@ -22,10 +22,21 @@ async function initStorefront() {
 
     // 4. Initialize product viewer modal
     const viewer = new ProductViewer(products, railEngine, cartManager);
+    window.viewer = viewer;
+
+    // Expose global openViewer(slug) per specification
+    window.openViewer = (slug) => {
+      const idx = products.findIndex(p => p.slug === slug);
+      if (idx !== -1) {
+        const station = document.getElementById(`garment-station-${idx}`);
+        viewer.open(idx, station);
+      }
+    };
 
     // 5. Setup drawer dialogs and catalog
     initCatalogDrawer(products, viewer, cartManager);
     initMenuDrawer(viewer);
+    window.openCatalogDrawer = openCatalogDrawer;
 
     // 6. Connect viewer footer "View in the shop →" button
     document.getElementById('viewer-shop-link')?.addEventListener('click', () => {
@@ -35,6 +46,14 @@ async function initStorefront() {
 
     document.getElementById('btn-shop-toggle')?.addEventListener('click', openCatalogDrawer);
     document.getElementById('btn-quick-catalog')?.addEventListener('click', openCatalogDrawer);
+
+    // 7. Check deep link hash on initial startup
+    const initialHash = window.location.hash.replace('#', '');
+    if (initialHash) {
+      setTimeout(() => {
+        window.openViewer(initialHash);
+      }, 100);
+    }
 
     console.log('Stack In Silence Storefront initialized successfully.');
   } catch (err) {

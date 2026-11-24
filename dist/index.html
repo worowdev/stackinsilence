@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/webp" href="/assets/wordmark.webp">
-  <script type="module" crossorigin src="/assets/index-CwsSJeM2.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-xdcs5ikz.css">
+  <script type="module" crossorigin src="/assets/index-E2SsreQJ.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BdHfQvPF.css">
 </head>
 <body>
   <!-- App Container -->
@@ -203,164 +203,75 @@
     >
       <div class="viewer-backdrop" id="viewer-backdrop"></div>
 
-      <div class="viewer-window" id="viewer-window">
-        <!-- Top Toolbar -->
-        <div class="viewer-header">
-          <div class="viewer-counter-group">
-            <span id="viewer-counter" class="viewer-counter">01 / 03</span>
-            <span class="viewer-drop-tag">DROP 01 — ARCHIVE</span>
-          </div>
+      <!-- Hairline wire from top edge to hanger hook -->
+      <div class="viewer-wire" id="viewer-wire" aria-hidden="true"></div>
 
-          <div class="viewer-tabs-group" role="tablist" aria-label="Garment views">
-            <button id="tab-front" class="viewer-tab active" role="tab" aria-selected="true">
-              Front
-            </button>
-            <button id="tab-back" class="viewer-tab" role="tab" aria-selected="false">
-              Back
-            </button>
-            <div class="tab-indicator" id="tab-indicator"></div>
-          </div>
-
+      <div class="viewer-layer" id="viewer-layer">
+        <!-- Top Toolbar (Close button on top-right) -->
+        <div class="viewer-header-row" id="viewer-header-row">
+          <div class="viewer-header-spacer"></div>
           <button id="viewer-close" class="viewer-close-btn" aria-label="Close product viewer">
             <span class="close-text">Close</span>
             <span class="close-icon" aria-hidden="true">✕</span>
           </button>
         </div>
 
-        <!-- Main Content Area -->
-        <div class="viewer-body">
-          <!-- Interactive Garment 360 Center Stage -->
-          <div class="viewer-stage-col" id="viewer-stage-col">
-            <!-- Navigation Chevrons -->
-            <button id="viewer-prev" class="viewer-nav-btn prev" aria-label="Previous garment (Left Arrow)">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
+        <!-- Center Stage -->
+        <div class="viewer-center-stage" id="viewer-center-stage">
+          <!-- Navigation Chevrons -->
+          <button id="viewer-prev" class="viewer-arrow-btn prev" aria-label="Previous garment (Left Arrow)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
 
-            <button id="viewer-next" class="viewer-nav-btn next" aria-label="Next garment (Right Arrow)">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
+          <button id="viewer-next" class="viewer-arrow-btn next" aria-label="Next garment (Right Arrow)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
-            <!-- Garment Visual Centerpiece -->
-            <div class="viewer-canvas-wrap" id="viewer-canvas-wrap">
-              <canvas id="viewer-canvas" width="720" height="800" aria-label="Interactive 360 degree turntable garment view"></canvas>
-              <!-- FLIP Flying Ghost Canvas for smooth spatial transition -->
-              <div id="viewer-flip-proxy" class="viewer-flip-proxy" aria-hidden="true"></div>
-            </div>
-
-            <div class="viewer-floor-shadow" id="viewer-shadow" aria-hidden="true"></div>
-
-            <!-- Drag Instruction Cue -->
-            <div class="viewer-scrub-hint" id="viewer-scrub-hint">
-              <span class="scrub-arrows">‹ • ›</span>
-              <span class="scrub-text">Drag horizontally to turn 360°</span>
-            </div>
+          <!-- Garment Canvas Wrap (FLIP-morphed) -->
+          <div class="viewer-canvas-wrap" id="viewer-canvas-wrap">
+            <canvas id="viewer-canvas" width="720" height="800" aria-label="Interactive garment view"></canvas>
+            <!-- Cross-dissolve overlay for morph -->
+            <div id="viewer-morph-still" class="viewer-morph-still" aria-hidden="true"></div>
           </div>
 
-          <!-- Product Details & Commerce Panel -->
-          <aside class="viewer-details-col" id="viewer-details-col" role="region" aria-label="Garment specifications and purchasing">
-            <div class="details-content-scroll">
-              <div class="details-tag-row">
-                <span class="tag-sku" id="viewer-sku">SIS-D01-001</span>
-                <span class="tag-status">IN STOCK / RUN 01</span>
-              </div>
+          <!-- Dynamic Soft Floor Shadow -->
+          <div class="viewer-floor-shadow" id="viewer-shadow" aria-hidden="true"></div>
 
-              <h1 id="viewer-title" class="viewer-product-title">Stack In Silence Arch Longsleeve</h1>
-              <p id="viewer-subtitle" class="viewer-product-subtitle">Heavyweight Vintage Script Longsleeve</p>
-              
-              <div class="viewer-price-row">
-                <span id="viewer-price" class="viewer-price-val">$110.00 USD</span>
-                <span class="tax-note">Tax included • Free domestic shipping</span>
-              </div>
+          <!-- Metadata Group Under Garment (matching web_demo_2.mp4) -->
+          <div class="viewer-meta-stack" id="viewer-meta-stack">
+            <div class="viewer-counter-row">
+              <span id="viewer-counter" class="viewer-counter">01 / 03</span>
+            </div>
+            <div class="viewer-title-group" id="viewer-title-group">
+              <h1 id="viewer-title" class="viewer-title">STACK IN SILENCE ARCH LONGSLEEVE</h1>
+              <p id="viewer-subtitle" class="viewer-subtitle">Heavyweight Vintage Script Longsleeve</p>
+            </div>
 
-              <!-- View Flat Toggle (front/back photos provided by user) -->
-              <div class="view-flat-toggle-row">
-                <button id="btn-toggle-flat" class="flat-photo-toggle" aria-label="Switch between 3D turntable and flat photo">
-                  <span class="toggle-icon">◎</span>
-                  <span id="flat-toggle-text">View Studio Flat</span>
+            <!-- Front / Back Toggle Tabs -->
+            <div class="viewer-tabs-wrap" id="viewer-tabs-wrap">
+              <div class="viewer-tabs-pill" role="tablist" aria-label="Garment views">
+                <button id="tab-front" class="viewer-tab-btn active" role="tab" aria-selected="true">
+                  Front
                 </button>
-              </div>
-
-              <!-- Size Selection -->
-              <div class="size-section">
-                <div class="size-header">
-                  <label class="size-label">Select Size</label>
-                  <button id="btn-size-guide" class="btn-text-link" type="button">Size Guide</button>
-                </div>
-                <div class="size-options-grid" id="size-options" role="radiogroup" aria-label="Select size">
-                  <button type="button" class="size-chip" data-size="S" role="radio" aria-checked="false">S</button>
-                  <button type="button" class="size-chip" data-size="M" role="radio" aria-checked="false">M</button>
-                  <button type="button" class="size-chip selected" data-size="L" role="radio" aria-checked="true">L</button>
-                  <button type="button" class="size-chip" data-size="XL" role="radio" aria-checked="false">XL</button>
-                  <button type="button" class="size-chip" data-size="XXL" role="radio" aria-checked="false">XXL</button>
-                </div>
-                <div class="size-recommendation" id="size-hint">
-                  Model is 6'1" (185 cm) wearing size L for a boxy streetwear fit.
-                </div>
-              </div>
-
-              <!-- Action CTAs -->
-              <div class="actions-section">
-                <button id="btn-add-to-bag" class="btn-primary-action">
-                  <span class="btn-text">Add to Bag</span>
-                  <span class="btn-price-addon" id="btn-price-addon">— $110.00</span>
-                  <span class="btn-check-icon" aria-hidden="true">✓</span>
+                <button id="tab-back" class="viewer-tab-btn" role="tab" aria-selected="false">
+                  Back
                 </button>
-                <button id="btn-fast-checkout" class="btn-secondary-action">
-                  <span>Fast Checkout (Demo)</span>
-                </button>
-              </div>
-
-              <!-- Editorial Story & Fabric Details Accordion -->
-              <div class="editorial-accordion">
-                <details class="acc-item" open>
-                  <summary class="acc-summary">
-                    <span>Garment Narrative</span>
-                    <span class="acc-chevron">›</span>
-                  </summary>
-                  <div class="acc-body" id="viewer-desc">
-                    Signature arched 'STACK IN SILENCE' logo across the chest with ornate calligraphy running down both sleeves. Custom heavyweight cotton cut in a relaxed, boxy silhouette.
-                  </div>
-                </details>
-
-                <details class="acc-item">
-                  <summary class="acc-summary">
-                    <span>Material & Craft</span>
-                    <span class="acc-chevron">›</span>
-                  </summary>
-                  <div class="acc-body" id="viewer-specs">
-                    <ul class="specs-list" id="viewer-specs-list">
-                      <li>100% Heavyweight organic cotton (300 GSM)</li>
-                      <li>Dual sleeve script calligraphy screenprint</li>
-                      <li>Ribbed collar and cuffs</li>
-                      <li>Preshrunk vintage wash finish</li>
-                    </ul>
-                  </div>
-                </details>
-
-                <details class="acc-item">
-                  <summary class="acc-summary">
-                    <span>Shipping & Studio Policy</span>
-                    <span class="acc-chevron">›</span>
-                  </summary>
-                  <div class="acc-body">
-                    <p>Complimentary worldwide express shipping on orders over $150. All garments ship in bespoke compostable garment packaging within 24-48 business hours.</p>
-                  </div>
-                </details>
+                <div class="viewer-tab-line" id="viewer-tab-line" aria-hidden="true"></div>
               </div>
             </div>
-          </aside>
+          </div>
         </div>
 
-        <!-- Footer strip inside viewer -->
-        <div class="viewer-footer-bar">
-          <div class="viewer-brand-left">STACK IN SILENCE</div>
-          <button id="viewer-shop-link" class="viewer-shop-right">
+        <!-- Footer Row -->
+        <div class="viewer-footer-row" id="viewer-footer-row">
+          <div class="viewer-brand-tag">STACK IN SILENCE</div>
+          <button id="viewer-shop-link" class="viewer-shop-cta" aria-label="View in the shop">
             <span>View in the shop</span>
-            <span class="shop-arrow">→</span>
+            <span class="cta-arrow" aria-hidden="true">→</span>
           </button>
         </div>
       </div>

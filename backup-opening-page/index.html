@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>STACK IN SILENCE — Wear the reminder.</title>
+  <meta name="description" content="Stack In Silence — Drop 01. High-concept luxury streetwear designed in limited edition. Explore the interactive clothing rail.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+  <link rel="icon" type="image/webp" href="/assets/wordmark.webp">
+</head>
+<body>
+  <!-- App Container -->
+  <div id="app" class="app-root">
+
+    <!-- Header Navigation -->
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <!-- Menu Button (Left) -->
+        <button id="btn-menu" class="nav-btn nav-btn-left" aria-label="Open collection menu" aria-expanded="false" aria-controls="menu-drawer">
+          <span class="nav-icon-burger" aria-hidden="true">
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </span>
+          <span class="nav-btn-text">Menu</span>
+        </button>
+
+        <!-- Shop / Cart Trigger (Right) -->
+        <div class="nav-right-group">
+          <button id="btn-shop-toggle" class="nav-btn nav-btn-secondary" aria-label="Quick catalog view">
+            <span class="nav-btn-text">Shop ↗</span>
+          </button>
+          <button id="btn-cart" class="nav-btn nav-btn-cart" aria-label="Open shopping bag" aria-expanded="false" aria-controls="cart-drawer">
+            <span class="cart-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </span>
+            <span class="nav-btn-text">Bag</span>
+            <span id="cart-badge" class="cart-badge" aria-label="0 items">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Clothing Rail Stage -->
+    <main class="main-stage-container" id="main-content">
+      <div class="stage-wrapper" id="stage-wrapper">
+        <!-- Clean Plate Background (Poster with wordmark, steel rail, studio gradient & tagline) -->
+        <div class="stage-backdrop-container">
+          <img 
+            id="clean-plate-img" 
+            class="stage-clean-plate" 
+            src="/assets/clean_plate.webp" 
+            alt="Stack In Silence Studio Rail"
+            loading="eager"
+            fetchpriority="high"
+          >
+          <!-- Extended steel rail for widescreen displays -->
+          <div class="rail-extension-line" aria-hidden="true"></div>
+        </div>
+
+        <!-- Crisp Background-Removed Master Wordmark -->
+        <div class="stage-wordmark-container" aria-hidden="true">
+          <img 
+            src="/assets/wordmark_clean.png" 
+            class="stage-wordmark-img" 
+            alt="Stack In Silence" 
+            loading="eager" 
+            fetchpriority="high"
+          >
+        </div>
+
+        <!-- Interactive Garment Stations (3 Hanging Garments) -->
+        <div class="garments-stage" id="garments-stage" role="region" aria-label="Interactive Clothing Rack">
+          <!-- Garment 1: Longsleeve (Left, 21.86%) -->
+          <div 
+            class="garment-station" 
+            id="garment-station-0" 
+            data-index="0" 
+            data-slug="arch-longsleeve"
+            role="button"
+            tabindex="0"
+            aria-label="View Stack In Silence Arch Longsleeve"
+          >
+            <div class="garment-canvas-wrap">
+              <canvas class="garment-canvas" id="canvas-0" width="720" height="800"></canvas>
+            </div>
+            <!-- Dynamic Floor Shadow -->
+            <div class="garment-floor-shadow" id="shadow-0" aria-hidden="true"></div>
+            <!-- Garment Pin Label -->
+            <div class="garment-pin" aria-hidden="true">
+              <span class="pin-dot"></span>
+              <span class="pin-text">Arch Longsleeve</span>
+              <span class="pin-price">$110</span>
+            </div>
+          </div>
+
+          <!-- Garment 2: Short-sleeve Tee (Center, 50.18%) -->
+          <div 
+            class="garment-station" 
+            id="garment-station-1" 
+            data-index="1" 
+            data-slug="all-we-need-tee"
+            role="button"
+            tabindex="0"
+            aria-label="View All We Need Vintage Boxy Tee"
+          >
+            <div class="garment-canvas-wrap">
+              <canvas class="garment-canvas" id="canvas-1" width="720" height="800"></canvas>
+            </div>
+            <!-- Dynamic Floor Shadow -->
+            <div class="garment-floor-shadow" id="shadow-1" aria-hidden="true"></div>
+            <!-- Garment Pin Label -->
+            <div class="garment-pin" aria-hidden="true">
+              <span class="pin-dot"></span>
+              <span class="pin-text">All We Need Tee</span>
+              <span class="pin-price">$85</span>
+            </div>
+          </div>
+
+          <!-- Garment 3: Collared Shirt (Right, 78.88%) -->
+          <div 
+            class="garment-station" 
+            id="garment-station-2" 
+            data-index="2" 
+            data-slug="money-rose-shirt"
+            role="button"
+            tabindex="0"
+            aria-label="View Money Rose Resort Shirt"
+          >
+            <div class="garment-canvas-wrap">
+              <canvas class="garment-canvas" id="canvas-2" width="720" height="800"></canvas>
+            </div>
+            <!-- Dynamic Floor Shadow -->
+            <div class="garment-floor-shadow" id="shadow-2" aria-hidden="true"></div>
+            <!-- Garment Pin Label -->
+            <div class="garment-pin" aria-hidden="true">
+              <span class="pin-dot"></span>
+              <span class="pin-text">Money Rose Shirt</span>
+              <span class="pin-price">$125</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Microcopy & Collection Quick Bar -->
+        <div class="stage-footer-overlay">
+          <div class="microcopy-badge" id="microcopy-badge">
+            <span class="microcopy-icon" aria-hidden="true">✦</span>
+            <span class="microcopy-text">Hover to turn. Click to explore.</span>
+          </div>
+          <button id="btn-quick-catalog" class="quick-catalog-pill" aria-label="Browse full Drop 01 catalog">
+            <span>Shop the collection</span>
+            <span class="pill-arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Continuous Marquee -->
+    <div class="marquee-strip" role="marquee" aria-label="Brand statement marquee">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span>ALL WE NEED IS MONEY</span>
+          <span class="marquee-star">✦</span>
+          <span>STACK IN SILENCE</span>
+          <span class="marquee-star">✦</span>
+          <span>WEAR THE REMINDER</span>
+          <span class="marquee-star">✦</span>
+          <span>THE FIRST DROP</span>
+          <span class="marquee-star">✦</span>
+          <span>LIMITED EDITION</span>
+          <span class="marquee-star">✦</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <span>ALL WE NEED IS MONEY</span>
+          <span class="marquee-star">✦</span>
+          <span>STACK IN SILENCE</span>
+          <span class="marquee-star">✦</span>
+          <span>WEAR THE REMINDER</span>
+          <span class="marquee-star">✦</span>
+          <span>THE FIRST DROP</span>
+          <span class="marquee-star">✦</span>
+          <span>LIMITED EDITION</span>
+          <span class="marquee-star">✦</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Viewer Modal (The signature blurred editorial viewer with FLIP transition) -->
+    <div 
+      id="product-viewer" 
+      class="product-viewer" 
+      role="dialog" 
+      aria-modal="true" 
+      aria-hidden="true" 
+      aria-labelledby="viewer-title"
+    >
+      <div class="viewer-backdrop" id="viewer-backdrop"></div>
+
+      <div class="viewer-window" id="viewer-window">
+        <!-- Top Toolbar -->
+        <div class="viewer-header">
+          <div class="viewer-counter-group">
+            <span id="viewer-counter" class="viewer-counter">01 / 03</span>
+            <span class="viewer-drop-tag">DROP 01 — ARCHIVE</span>
+          </div>
+
+          <div class="viewer-tabs-group" role="tablist" aria-label="Garment views">
+            <button id="tab-front" class="viewer-tab active" role="tab" aria-selected="true">
+              Front
+            </button>
+            <button id="tab-back" class="viewer-tab" role="tab" aria-selected="false">
+              Back
+            </button>
+            <div class="tab-indicator" id="tab-indicator"></div>
+          </div>
+
+          <button id="viewer-close" class="viewer-close-btn" aria-label="Close product viewer">
+            <span class="close-text">Close</span>
+            <span class="close-icon" aria-hidden="true">✕</span>
+          </button>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="viewer-body">
+          <!-- Interactive Garment 360 Center Stage -->
+          <div class="viewer-stage-col" id="viewer-stage-col">
+            <!-- Navigation Chevrons -->
+            <button id="viewer-prev" class="viewer-nav-btn prev" aria-label="Previous garment (Left Arrow)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+
+            <button id="viewer-next" class="viewer-nav-btn next" aria-label="Next garment (Right Arrow)">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+
+            <!-- Garment Visual Centerpiece -->
+            <div class="viewer-canvas-wrap" id="viewer-canvas-wrap">
+              <canvas id="viewer-canvas" width="720" height="800" aria-label="Interactive 360 degree turntable garment view"></canvas>
+              <!-- FLIP Flying Ghost Canvas for smooth spatial transition -->
+              <div id="viewer-flip-proxy" class="viewer-flip-proxy" aria-hidden="true"></div>
+            </div>
+
+            <div class="viewer-floor-shadow" id="viewer-shadow" aria-hidden="true"></div>
+
+            <!-- Drag Instruction Cue -->
+            <div class="viewer-scrub-hint" id="viewer-scrub-hint">
+              <span class="scrub-arrows">‹ • ›</span>
+              <span class="scrub-text">Drag horizontally to turn 360°</span>
+            </div>
+          </div>
+
+          <!-- Product Details & Commerce Panel -->
+          <aside class="viewer-details-col" id="viewer-details-col" role="region" aria-label="Garment specifications and purchasing">
+            <div class="details-content-scroll">
+              <div class="details-tag-row">
+                <span class="tag-sku" id="viewer-sku">SIS-D01-001</span>
+                <span class="tag-status">IN STOCK / RUN 01</span>
+              </div>
+
+              <h1 id="viewer-title" class="viewer-product-title">Stack In Silence Arch Longsleeve</h1>
+              <p id="viewer-subtitle" class="viewer-product-subtitle">Heavyweight Vintage Script Longsleeve</p>
+              
+              <div class="viewer-price-row">
+                <span id="viewer-price" class="viewer-price-val">$110.00 USD</span>
+                <span class="tax-note">Tax included • Free domestic shipping</span>
+              </div>
+
+              <!-- View Flat Toggle (front/back photos provided by user) -->
+              <div class="view-flat-toggle-row">
+                <button id="btn-toggle-flat" class="flat-photo-toggle" aria-label="Switch between 3D turntable and flat photo">
+                  <span class="toggle-icon">◎</span>
+                  <span id="flat-toggle-text">View Studio Flat</span>
+                </button>
+              </div>
+
+              <!-- Size Selection -->
+              <div class="size-section">
+                <div class="size-header">
+                  <label class="size-label">Select Size</label>
+                  <button id="btn-size-guide" class="btn-text-link" type="button">Size Guide</button>
+                </div>
+                <div class="size-options-grid" id="size-options" role="radiogroup" aria-label="Select size">
+                  <button type="button" class="size-chip" data-size="S" role="radio" aria-checked="false">S</button>
+                  <button type="button" class="size-chip" data-size="M" role="radio" aria-checked="false">M</button>
+                  <button type="button" class="size-chip selected" data-size="L" role="radio" aria-checked="true">L</button>
+                  <button type="button" class="size-chip" data-size="XL" role="radio" aria-checked="false">XL</button>
+                  <button type="button" class="size-chip" data-size="XXL" role="radio" aria-checked="false">XXL</button>
+                </div>
+                <div class="size-recommendation" id="size-hint">
+                  Model is 6'1" (185 cm) wearing size L for a boxy streetwear fit.
+                </div>
+              </div>
+
+              <!-- Action CTAs -->
+              <div class="actions-section">
+                <button id="btn-add-to-bag" class="btn-primary-action">
+                  <span class="btn-text">Add to Bag</span>
+                  <span class="btn-price-addon" id="btn-price-addon">— $110.00</span>
+                  <span class="btn-check-icon" aria-hidden="true">✓</span>
+                </button>
+                <button id="btn-fast-checkout" class="btn-secondary-action">
+                  <span>Fast Checkout (Demo)</span>
+                </button>
+              </div>
+
+              <!-- Editorial Story & Fabric Details Accordion -->
+              <div class="editorial-accordion">
+                <details class="acc-item" open>
+                  <summary class="acc-summary">
+                    <span>Garment Narrative</span>
+                    <span class="acc-chevron">›</span>
+                  </summary>
+                  <div class="acc-body" id="viewer-desc">
+                    Signature arched 'STACK IN SILENCE' logo across the chest with ornate calligraphy running down both sleeves. Custom heavyweight cotton cut in a relaxed, boxy silhouette.
+                  </div>
+                </details>
+
+                <details class="acc-item">
+                  <summary class="acc-summary">
+                    <span>Material & Craft</span>
+                    <span class="acc-chevron">›</span>
+                  </summary>
+                  <div class="acc-body" id="viewer-specs">
+                    <ul class="specs-list" id="viewer-specs-list">
+                      <li>100% Heavyweight organic cotton (300 GSM)</li>
+                      <li>Dual sleeve script calligraphy screenprint</li>
+                      <li>Ribbed collar and cuffs</li>
+                      <li>Preshrunk vintage wash finish</li>
+                    </ul>
+                  </div>
+                </details>
+
+                <details class="acc-item">
+                  <summary class="acc-summary">
+                    <span>Shipping & Studio Policy</span>
+                    <span class="acc-chevron">›</span>
+                  </summary>
+                  <div class="acc-body">
+                    <p>Complimentary worldwide express shipping on orders over $150. All garments ship in bespoke compostable garment packaging within 24-48 business hours.</p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Footer strip inside viewer -->
+        <div class="viewer-footer-bar">
+          <div class="viewer-brand-left">STACK IN SILENCE</div>
+          <button id="viewer-shop-link" class="viewer-shop-right">
+            <span>View in the shop</span>
+            <span class="shop-arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Shop / Catalog Drawer (The fast-path catalog for immediate purchasing) -->
+    <div id="catalog-drawer" class="drawer-modal catalog-drawer" aria-hidden="true">
+      <div class="drawer-backdrop" id="catalog-backdrop"></div>
+      <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="catalog-heading">
+        <div class="drawer-header">
+          <h2 id="catalog-heading" class="drawer-title">Drop 01 Collection</h2>
+          <button id="catalog-close" class="drawer-close" aria-label="Close catalog">✕</button>
+        </div>
+        <div class="drawer-content">
+          <p class="catalog-intro">Three master-crafted silhouettes. Pure cotton garments on a custom steel rail.</p>
+          <div class="catalog-grid" id="catalog-grid">
+            <!-- Dynamically populated from products.json -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Slideover Drawer -->
+    <div id="cart-drawer" class="drawer-modal cart-drawer" aria-hidden="true">
+      <div class="drawer-backdrop" id="cart-backdrop"></div>
+      <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="cart-heading">
+        <div class="drawer-header">
+          <div class="cart-title-row">
+            <h2 id="cart-heading" class="drawer-title">Your Bag</h2>
+            <span id="cart-count-title" class="cart-count-pill">0 items</span>
+          </div>
+          <button id="cart-close" class="drawer-close" aria-label="Close bag">✕</button>
+        </div>
+
+        <div class="cart-shipping-banner" id="cart-shipping-banner">
+          <div class="shipping-progress-bar">
+            <div class="shipping-progress-fill" id="shipping-progress-fill" style="width: 0%"></div>
+          </div>
+          <p class="shipping-text" id="shipping-text">Add $40.00 more for Free Worldwide Express Delivery</p>
+        </div>
+
+        <div class="drawer-content cart-content" id="cart-items-container">
+          <!-- Dynamically populated or empty state -->
+        </div>
+
+        <div class="cart-footer" id="cart-footer">
+          <div class="cart-subtotal-row">
+            <span>Subtotal</span>
+            <span id="cart-subtotal" class="cart-subtotal-val">$0.00 USD</span>
+          </div>
+          <p class="cart-disclaimer">Shipping and taxes calculated at checkout. Demo storefront mode active.</p>
+          <button id="btn-checkout" class="btn-primary-action btn-checkout">
+            <span>Proceed to Checkout</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <button id="btn-clear-cart" class="btn-clear-cart">Empty Bag</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Drawer / Brand Journal -->
+    <div id="menu-drawer" class="drawer-modal menu-drawer" aria-hidden="true">
+      <div class="drawer-backdrop" id="menu-backdrop"></div>
+      <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="menu-heading">
+        <div class="drawer-header">
+          <span class="drawer-title" id="menu-heading">Stack In Silence</span>
+          <button id="menu-close" class="drawer-close" aria-label="Close menu">✕</button>
+        </div>
+        <div class="drawer-content menu-content">
+          <div class="menu-brand-statement">
+            <h3 class="statement-headline">"Wear the reminder."</h3>
+            <p class="statement-body">
+              Stack In Silence represents understated persistence. Heavyweight textiles, archival vintage washes, and meticulous calligraphy crafted for those moving without noise.
+            </p>
+          </div>
+
+          <nav class="menu-nav-links" aria-label="Site links">
+            <button class="menu-link-item" id="menu-link-collection">
+              <span class="menu-num">01</span>
+              <span class="menu-txt">Collection Drop 01</span>
+              <span class="menu-arr">↗</span>
+            </button>
+            <button class="menu-link-item" id="menu-link-stills">
+              <span class="menu-num">02</span>
+              <span class="menu-txt">Archival Lookbook</span>
+              <span class="menu-arr">↗</span>
+            </button>
+            <button class="menu-link-item" id="menu-link-sizing">
+              <span class="menu-num">03</span>
+              <span class="menu-txt">Size & Fit Guide</span>
+              <span class="menu-arr">↗</span>
+            </button>
+            <button class="menu-link-item" id="menu-link-demo">
+              <span class="menu-num">04</span>
+              <span class="menu-txt">Commerce Demo Specs</span>
+              <span class="menu-arr">↗</span>
+            </button>
+          </nav>
+
+          <div class="menu-contact-info">
+            <div class="contact-label">STUDIO HEADQUARTERS</div>
+            <div class="contact-val">Paris • Tokyo • New York</div>
+            <div class="contact-label" style="margin-top: 12px;">CURRENCY</div>
+            <div class="contact-val">USD ($) — International shipping available</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div id="size-guide-modal" class="drawer-modal size-guide-modal" aria-hidden="true">
+      <div class="drawer-backdrop" id="size-guide-backdrop"></div>
+      <div class="drawer-panel size-guide-panel" role="dialog" aria-modal="true" aria-labelledby="size-guide-title">
+        <div class="drawer-header">
+          <h2 id="size-guide-title" class="drawer-title">Size & Fit Specification</h2>
+          <button id="size-guide-close" class="drawer-close" aria-label="Close size guide">✕</button>
+        </div>
+        <div class="drawer-content">
+          <p class="guide-note">All garments are engineered with custom oversized drop-shoulder tailoring. Order true-to-size for an editorial relaxed drape, or size down for a standard classic fit.</p>
+          <div class="table-responsive">
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Chest (in)</th>
+                  <th>Length (in)</th>
+                  <th>Sleeve (in)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>S</td><td>44</td><td>27.5</td><td>24.0</td></tr>
+                <tr><td>M</td><td>46</td><td>28.5</td><td>24.5</td></tr>
+                <tr class="highlight-row"><td>L (Model)</td><td>48</td><td>29.5</td><td>25.0</td></tr>
+                <tr><td>XL</td><td>51</td><td>30.5</td><td>25.5</td></tr>
+                <tr><td>XXL</td><td>54</td><td>31.5</td><td>26.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Checkout Modal -->
+    <div id="checkout-modal" class="drawer-modal checkout-modal" aria-hidden="true">
+      <div class="drawer-backdrop" id="checkout-backdrop"></div>
+      <div class="drawer-panel checkout-panel" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+        <div class="drawer-header">
+          <h2 id="checkout-title" class="drawer-title">Demo Checkout Handoff</h2>
+          <button id="checkout-close" class="drawer-close" aria-label="Close checkout">✕</button>
+        </div>
+        <div class="drawer-content">
+          <div class="checkout-badge-pill">DEMO STOREFRONT MODE</div>
+          <p class="checkout-p">
+            This storefront is running in <strong>Production Demo Mode</strong>. In a live deployment, this handoff connects directly to Shopify Storefront API or your custom headless commerce backend.
+          </p>
+          <div class="order-summary-box" id="checkout-order-summary">
+            <!-- Order summary rendered by JS -->
+          </div>
+          <button id="btn-complete-demo-order" class="btn-primary-action" style="margin-top: 20px;">
+            <span>Simulate Order Confirmation</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

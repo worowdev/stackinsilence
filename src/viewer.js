@@ -91,7 +91,6 @@ export class ProductViewer {
   cacheElements() {
     this.modal = document.getElementById('product-viewer');
     this.backdrop = document.getElementById('viewer-backdrop');
-    this.wire = document.getElementById('viewer-wire');
     this.layer = document.getElementById('viewer-layer');
     this.headerRow = document.getElementById('viewer-header-row');
     this.counterEl = document.getElementById('viewer-counter');
@@ -211,9 +210,7 @@ export class ProductViewer {
 
     // Window resize handling
     window.addEventListener('resize', () => {
-      if (this.state === 'VIEWER') {
-        this.updateWirePosition();
-      }
+      // Keep canvas and layout responsive
     });
   }
 
@@ -432,14 +429,6 @@ export class ProductViewer {
     }
   }
 
-  updateWirePosition() {
-    if (!this.wire || !this.canvasWrap) return;
-    const wrapRect = this.canvasWrap.getBoundingClientRect();
-    const hookTop = wrapRect.top + 6; // Hook meets the canvas top edge
-    this.wire.style.height = `${Math.max(0, hookTop)}px`;
-    this.wire.style.left = `${wrapRect.left + wrapRect.width / 2}px`;
-  }
-
   // ==========================================================================
   // Master Progress Tween (t in [0, 1])
   // ==========================================================================
@@ -506,14 +495,6 @@ export class ProductViewer {
     const stagger = (startTime, duration = 0.25) => {
       return clamp((t - startTime) / duration, 0, 1);
     };
-
-    // Hairline wire (scaleY from 0)
-    if (this.wire) {
-      const wireT = stagger(0.53, 0.25);
-      this.wire.style.opacity = wireT.toFixed(3);
-      this.wire.style.transform = `scaleY(${wireT.toFixed(3)})`;
-      this.updateWirePosition();
-    }
 
     // Header row (counter & close btn)
     if (this.headerRow) {
@@ -849,7 +830,6 @@ export class ProductViewer {
       this.updateProductDetails();
       this.updateTabIndicator(1.0);
       this.renderCanvas(1.0);
-      this.updateWirePosition();
 
       // Incoming slide
       if (outgoingWrap) {
